@@ -18,6 +18,8 @@ import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.border.BevelBorder;
 
+import com.filmApp.CommandPattern.AboutCommand;
+import com.filmApp.CommandPattern.MenuCommand;
 import com.filmApp.FilmFactory.InitFilms;;
 
 public class FilmAppGUI {

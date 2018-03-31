@@ -1,4 +1,4 @@
-package com.filmApp.GUI;
+package com.filmApp.CommandPattern;
 
 public class ExitCommand implements Command {
 	

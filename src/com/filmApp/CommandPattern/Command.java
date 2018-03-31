@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.filmApp.GUI;
+package com.filmApp.CommandPattern;
 
 public interface Command {
 	
