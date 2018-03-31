@@ -141,25 +141,35 @@ public class FilmAppGUI {
 		
 		JList list = new JList();
 		list.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		
+		JPanel pnlPhotos = new JPanel();
+		pnlPhotos.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		
+		JButton btnNext = new JButton(">>");
+		
+		JButton btnPrev = new JButton("<<");
 		GroupLayout gl_pnlMainFilmContent = new GroupLayout(pnlMainFilmContent);
 		gl_pnlMainFilmContent.setHorizontalGroup(
 			gl_pnlMainFilmContent.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlMainFilmContent.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_pnlMainFilmContent.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblPoster)
-						.addComponent(lblPhotos))
-					.addGap(265)
-					.addGroup(gl_pnlMainFilmContent.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblReleaseDate)
-						.addComponent(lblTitle)
-						.addComponent(lblDirector)
-						.addComponent(lblRuntime)
-						.addComponent(lblBudget)
-						.addComponent(lblBoxOffice)
-						.addComponent(lblWriters)
-						.addComponent(lblSynopsis)
-						.addComponent(lblCast))
+						.addGroup(gl_pnlMainFilmContent.createSequentialGroup()
+							.addGroup(gl_pnlMainFilmContent.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblPoster)
+								.addComponent(lblPhotos))
+							.addGap(265)
+							.addGroup(gl_pnlMainFilmContent.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblReleaseDate)
+								.addComponent(lblTitle)
+								.addComponent(lblDirector)
+								.addComponent(lblRuntime)
+								.addComponent(lblBudget)
+								.addComponent(lblBoxOffice)
+								.addComponent(lblWriters)
+								.addComponent(lblSynopsis)
+								.addComponent(lblCast)))
+						.addComponent(pnlPhotos, GroupLayout.PREFERRED_SIZE, 278, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_pnlMainFilmContent.createParallelGroup(Alignment.LEADING)
 						.addComponent(list, GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
@@ -172,6 +182,12 @@ public class FilmAppGUI {
 						.addComponent(txtBoxOffice, GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
 						.addComponent(txtWriters, GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE))
 					.addGap(21))
+				.addGroup(gl_pnlMainFilmContent.createSequentialGroup()
+					.addGap(100)
+					.addComponent(btnPrev)
+					.addGap(18)
+					.addComponent(btnNext)
+					.addContainerGap(504, Short.MAX_VALUE))
 		);
 		gl_pnlMainFilmContent.setVerticalGroup(
 			gl_pnlMainFilmContent.createParallelGroup(Alignment.LEADING)
@@ -211,10 +227,17 @@ public class FilmAppGUI {
 						.addComponent(txtSynopsis, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_pnlMainFilmContent.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblPhotos)
+						.addGroup(gl_pnlMainFilmContent.createSequentialGroup()
+							.addComponent(lblPhotos)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(pnlPhotos, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE))
 						.addComponent(lblCast)
 						.addComponent(list, GroupLayout.PREFERRED_SIZE, 231, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(294, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_pnlMainFilmContent.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnNext)
+						.addComponent(btnPrev))
+					.addGap(48))
 		);
 		pnlMainFilmContent.setLayout(gl_pnlMainFilmContent);
 		
