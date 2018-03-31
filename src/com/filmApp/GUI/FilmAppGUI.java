@@ -18,6 +18,8 @@ import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.border.BevelBorder;
 
+import com.filmApp.FilmFactory.InitFilms;;
+
 public class FilmAppGUI {
 
 	private JFrame frmFilmApp;
@@ -38,11 +40,15 @@ public class FilmAppGUI {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		InitFilms films = new InitFilms();
+		films.initFilms();
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					FilmAppGUI window = new FilmAppGUI();
 					window.frmFilmApp.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
