@@ -29,6 +29,10 @@ public class FilmAppGUI {
 	private JTextField txtBoxOffice;
 	private JTextField txtWriters;
 	private JTextField txtSynopsis;
+	
+	JMenu mnHelp;
+	MenuCommand mntmAbout;
+	AboutCommand about;
 
 	/**
 	 * Launch the application.
