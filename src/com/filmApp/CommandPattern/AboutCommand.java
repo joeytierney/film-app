@@ -1,21 +1,23 @@
 /**
- * 
+ *  Concrete command
  */
 package com.filmApp.CommandPattern;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import com.filmApp.GUI.FilmAppGUI;
+
 public class AboutCommand implements Command {
 	
-	JFrame myFrame;
+	FilmAppGUI myFrame;
 	
-	public AboutCommand(JFrame frame) {
-		myFrame = frame;
+	public AboutCommand(FilmAppGUI filmAppGUI) {
+		myFrame = filmAppGUI;
 	}
 	
 	public void Execute() {
-		JOptionPane.showMessageDialog(myFrame, "Created by Eoghan de Bhal and Joseph Tierney");
+		JOptionPane.showMessageDialog(null, "Created by Eoghan de Bhal and Joseph Tierney");
 	}
 
 }

@@ -1,6 +1,8 @@
 package com.filmApp.GUI;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
@@ -19,10 +21,14 @@ import javax.swing.JList;
 import javax.swing.border.BevelBorder;
 
 import com.filmApp.CommandPattern.AboutCommand;
+import com.filmApp.CommandPattern.ButtonCommand;
+import com.filmApp.CommandPattern.CommandHolder;
+import com.filmApp.CommandPattern.ExitButtonCommand;
+import com.filmApp.CommandPattern.ExitCommand;
 import com.filmApp.CommandPattern.MenuCommand;
 import com.filmApp.FilmFactory.InitFilms;;
 
-public class FilmAppGUI {
+public class FilmAppGUI implements ActionListener {
 
 	private JFrame frmFilmApp;
 	private JTextField txtTitle;
@@ -34,9 +40,9 @@ public class FilmAppGUI {
 	private JTextField txtWriters;
 	private JTextField txtSynopsis;
 	
-	JMenu mnHelp;
-	MenuCommand mntmAbout;
-	AboutCommand about;
+	JMenu mnNewMenu;
+	MenuCommand mntmQuit, mntmAbout;
+	ExitButtonCommand ex;
 
 	/**
 	 * Launch the application.
@@ -79,7 +85,13 @@ public class FilmAppGUI {
 		
 		JPanel pnlMainFilmContent = new JPanel();
 		
-		JButton btnQuit = new JButton("Quit");
+		JButton btnQuit;
+		btnQuit = new ButtonCommand("Quit", frmFilmApp);
+		ex = new ExitButtonCommand();
+		((ButtonCommand) btnQuit).setCommand(ex);
+		
+		btnQuit.addActionListener(this);
+		
 		GroupLayout groupLayout = new GroupLayout(frmFilmApp.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -274,13 +286,25 @@ public class FilmAppGUI {
 		JMenu mnNewMenu = new JMenu("File");
 		menuBar.add(mnNewMenu);
 		
-		JMenuItem mntmQuit = new JMenuItem("Quit");
+		mntmQuit = new MenuCommand("Quit", frmFilmApp);
 		mnNewMenu.add(mntmQuit);
+		mntmQuit.setCommand(new ExitCommand());
+		mntmQuit.addActionListener(this);
 		
 		JMenu mnHelp = new JMenu("Help");
 		menuBar.add(mnHelp);
 		
-		JMenuItem mntmAbout = new JMenuItem("About");
+		mntmAbout = new MenuCommand("About", frmFilmApp);
 		mnHelp.add(mntmAbout);
+		mntmAbout.setCommand(new AboutCommand(this));
+		mntmAbout.addActionListener(this);
+	
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		CommandHolder obj = (CommandHolder)e.getSource();
+		obj.getCommand().Execute();
+		
 	}
 }
