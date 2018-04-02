@@ -86,7 +86,7 @@ public class FilmAppGUI implements ActionListener {
 		JPanel pnlMainFilmContent = new JPanel();
 		
 		JButton btnQuit;
-		btnQuit = new ButtonCommand("Quit", frmFilmApp);
+		btnQuit = new ButtonCommand("Quit");
 		ex = new ExitButtonCommand();
 		((ButtonCommand) btnQuit).setCommand(ex);
 		

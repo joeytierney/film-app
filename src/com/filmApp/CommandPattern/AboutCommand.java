@@ -3,7 +3,6 @@
  */
 package com.filmApp.CommandPattern;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import com.filmApp.GUI.FilmAppGUI;

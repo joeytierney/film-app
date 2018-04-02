@@ -1,7 +1,6 @@
 package com.filmApp.CommandPattern;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
 public class ButtonCommand extends JButton implements CommandHolder{
 
@@ -10,11 +9,8 @@ public class ButtonCommand extends JButton implements CommandHolder{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Command buttonCommand;
-	private JFrame frame;
-	
-	public ButtonCommand(String name, JFrame myFrame){
+	public ButtonCommand(String name){
 		super(name);
-		frame = myFrame;
 	}
 	
 	public void setCommand(Command comd) {
