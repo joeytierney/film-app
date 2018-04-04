@@ -44,7 +44,7 @@ public class FilmTree implements TreeSelectionListener {
 		return treePanel;
 	}
 	
-	/**
+	
 	public void setFilmTree() {
         treePanel = new JPanel();
         //getContentPane().add(treePanel);
@@ -66,7 +66,7 @@ public class FilmTree implements TreeSelectionListener {
         //setVisible(true);
 
     }
-	*/
+	
 	
 	public void loadTree(Film topFilm) {
         DefaultMutableTreeNode troot;

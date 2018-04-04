@@ -27,6 +27,8 @@ import com.filmApp.CommandPattern.ExitButtonCommand;
 import com.filmApp.CommandPattern.ExitCommand;
 import com.filmApp.CommandPattern.MenuCommand;
 import com.filmApp.CompositePattern.FilmTree;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 
 public class FilmAppGUI implements ActionListener {
@@ -272,7 +274,32 @@ public class FilmAppGUI implements ActionListener {
 		pnlMainFilmContent.setLayout(gl_pnlMainFilmContent);
 		
 		filmTree = new JTree();
-		/**
+		filmTree.setModel(new DefaultTreeModel(
+			new DefaultMutableTreeNode("Movies") {
+				{
+					DefaultMutableTreeNode node_1;
+					node_1 = new DefaultMutableTreeNode("Comedy");
+						node_1.add(new DefaultMutableTreeNode("Austin Powers"));
+						node_1.add(new DefaultMutableTreeNode("Team America:World Police\""));
+						node_1.add(new DefaultMutableTreeNode("Wayne's World"));
+						node_1.add(new DefaultMutableTreeNode("The Simpsons Movie"));
+					add(node_1);
+					node_1 = new DefaultMutableTreeNode("Action");
+						node_1.add(new DefaultMutableTreeNode("The Dark Knight"));
+						node_1.add(new DefaultMutableTreeNode("Inception"));
+						node_1.add(new DefaultMutableTreeNode("Fight Club"));
+						node_1.add(new DefaultMutableTreeNode("The Lord of the Rings"));
+					add(node_1);
+					node_1 = new DefaultMutableTreeNode("Horror");
+						node_1.add(new DefaultMutableTreeNode("The Texas Chainsaw Massacre"));
+						node_1.add(new DefaultMutableTreeNode("The Omen"));
+						node_1.add(new DefaultMutableTreeNode("A Nightmare On Elm Street"));
+						node_1.add(new DefaultMutableTreeNode("Halloween"));
+					add(node_1);
+				}
+			}
+		));
+		
 		GroupLayout gl_pnlFilmList = new GroupLayout(pnlFilmList);
 		gl_pnlFilmList.setHorizontalGroup(
 			gl_pnlFilmList.createParallelGroup(Alignment.LEADING)
@@ -286,7 +313,7 @@ public class FilmAppGUI implements ActionListener {
 		);
 		
 		pnlFilmList.setLayout(gl_pnlFilmList);
-		*/
+		
 		frmFilmApp.getContentPane().setLayout(groupLayout);
 		
 		
