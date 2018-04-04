@@ -1,5 +1,6 @@
 package com.filmApp.GUI;
 
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +10,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.JTree;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
@@ -26,7 +26,8 @@ import com.filmApp.CommandPattern.CommandHolder;
 import com.filmApp.CommandPattern.ExitButtonCommand;
 import com.filmApp.CommandPattern.ExitCommand;
 import com.filmApp.CommandPattern.MenuCommand;
-import com.filmApp.FilmFactory.InitFilms;;
+import com.filmApp.CompositePattern.FilmTree;
+
 
 public class FilmAppGUI implements ActionListener {
 
@@ -43,13 +44,14 @@ public class FilmAppGUI implements ActionListener {
 	JMenu mnNewMenu;
 	MenuCommand mntmQuit, mntmAbout;
 	ExitButtonCommand ex;
+	protected JTree filmTree;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		InitFilms films = new InitFilms();
-		films.initFilms();
+		//InitFilms films = new InitFilms();
+		//films.initFilms();
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -75,13 +77,17 @@ public class FilmAppGUI implements ActionListener {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		frmFilmApp = new JFrame();
 		frmFilmApp.setTitle("Film App");
 		frmFilmApp.setBounds(100, 100, 978, 677);
 		frmFilmApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		//FilmTree testTree = new FilmTree();
+		
 		JPanel pnlFilmList = new JPanel();
 		pnlFilmList.setBorder(new TitledBorder(null, "Film List", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//pnlFilmList.add(testTree.getJPanel());
 		
 		JPanel pnlMainFilmContent = new JPanel();
 		
@@ -163,7 +169,7 @@ public class FilmAppGUI implements ActionListener {
 		txtSynopsis = new JTextField();
 		txtSynopsis.setColumns(10);
 		
-		JList list = new JList();
+		JList<Object> list = new JList<Object>();
 		list.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
 		JPanel pnlPhotos = new JPanel();
@@ -265,20 +271,24 @@ public class FilmAppGUI implements ActionListener {
 		);
 		pnlMainFilmContent.setLayout(gl_pnlMainFilmContent);
 		
-		JTree tree = new JTree();
+		filmTree = new JTree();
+		/**
 		GroupLayout gl_pnlFilmList = new GroupLayout(pnlFilmList);
 		gl_pnlFilmList.setHorizontalGroup(
 			gl_pnlFilmList.createParallelGroup(Alignment.LEADING)
-				.addComponent(tree, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+				.addComponent(filmTree, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
 		);
 		gl_pnlFilmList.setVerticalGroup(
 			gl_pnlFilmList.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlFilmList.createSequentialGroup()
-					.addComponent(tree, GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
+					.addComponent(filmTree, GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
 					.addContainerGap())
 		);
+		
 		pnlFilmList.setLayout(gl_pnlFilmList);
+		*/
 		frmFilmApp.getContentPane().setLayout(groupLayout);
+		
 		
 		JMenuBar menuBar = new JMenuBar();
 		frmFilmApp.setJMenuBar(menuBar);
