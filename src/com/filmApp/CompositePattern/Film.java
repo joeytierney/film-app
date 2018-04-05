@@ -4,7 +4,7 @@ import java.util.Enumeration;
 import java.util.NoSuchElementException;
 import java.util.Vector;
 
-public class Film<E> extends AbstractFilm{
+public class Film<E> extends AbstractFilm {
 	
 	public Film(String initName) {
 		filmName = initName;

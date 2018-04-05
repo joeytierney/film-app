@@ -1,6 +1,5 @@
 package com.filmApp.GUI;
 
-import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +12,7 @@ import javax.swing.JMenu;
 import javax.swing.JTree;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.TreeSelectionEvent;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -26,15 +26,20 @@ import com.filmApp.CommandPattern.CommandHolder;
 import com.filmApp.CommandPattern.ExitButtonCommand;
 import com.filmApp.CommandPattern.ExitCommand;
 import com.filmApp.CommandPattern.MenuCommand;
-import com.filmApp.CompositePattern.FilmTree;
+import com.filmApp.CompositePattern.FilmTreeModel;
+
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.UIManager;
+import java.awt.Color;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 
 
 public class FilmAppGUI implements ActionListener {
 
 	private JFrame frmFilmApp;
-	private JTextField txtTitle;
 	private JTextField txtDirector;
 	private JTextField txtReleaseDate;
 	private JTextField txtRuntime;
@@ -47,6 +52,8 @@ public class FilmAppGUI implements ActionListener {
 	MenuCommand mntmQuit, mntmAbout;
 	ExitButtonCommand ex;
 	protected JTree filmTree;
+	private JPanel pnlFilmList;
+	private JTextField txtTitle;
 
 	/**
 	 * Launch the application.
@@ -85,11 +92,11 @@ public class FilmAppGUI implements ActionListener {
 		frmFilmApp.setBounds(100, 100, 978, 677);
 		frmFilmApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		//FilmTree testTree = new FilmTree();
 		
-		JPanel pnlFilmList = new JPanel();
-		pnlFilmList.setBorder(new TitledBorder(null, "Film List", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//pnlFilmList.add(testTree.getJPanel());
+		pnlFilmList = new JPanel();
+		
+		pnlFilmList.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Movie List", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		
 		
 		JPanel pnlMainFilmContent = new JPanel();
 		
@@ -272,8 +279,10 @@ public class FilmAppGUI implements ActionListener {
 					.addGap(48))
 		);
 		pnlMainFilmContent.setLayout(gl_pnlMainFilmContent);
-		
+	
 		filmTree = new JTree();
+		
+		/**
 		filmTree.setModel(new DefaultTreeModel(
 			new DefaultMutableTreeNode("Movies") {
 				{
@@ -299,6 +308,10 @@ public class FilmAppGUI implements ActionListener {
 				}
 			}
 		));
+		*/
+		
+		filmTree.setModel(new DefaultTreeModel(new FilmTreeModel()));
+		
 		
 		GroupLayout gl_pnlFilmList = new GroupLayout(pnlFilmList);
 		gl_pnlFilmList.setHorizontalGroup(
@@ -344,4 +357,5 @@ public class FilmAppGUI implements ActionListener {
 		obj.getCommand().Execute();
 		
 	}
+
 }
