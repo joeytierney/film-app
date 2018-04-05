@@ -18,7 +18,8 @@ public class FightClub extends Movie{
 
 	@Override
 	public FilmDetails getFilmDetails() {
-		return new FilmDetails("Fight Club", "15 October 1999");
+		String[] photos = {"images/austinPowers1.jpg", "images/austinPowers2.jpg"};
+		return new FilmDetails("Fight Club", "15 October 1999", 2, photos);
 	}
 
 }

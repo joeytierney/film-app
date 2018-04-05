@@ -18,6 +18,7 @@ public class AustinPowers extends Movie {
 
 	@Override
 	public FilmDetails getFilmDetails() {
-		return new FilmDetails("Austin Powers", "2 May 1997");
+		String[] photos = {"images/austinPowers1.jpg", "images/austinPowers2.jpg"};
+		return new FilmDetails("Austin Powers", "2 May 1997", 2, photos);
 	}
 }

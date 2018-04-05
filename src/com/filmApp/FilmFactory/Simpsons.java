@@ -18,7 +18,8 @@ public class Simpsons extends Movie{
 
 	@Override
 	public FilmDetails getFilmDetails() {
-		return new FilmDetails("The Simpsons Movie", "27 July 2007");
+		String[] photos = {"images/austinPowers1.jpg", "images/austinPowers2.jpg"};
+		return new FilmDetails("The Simpsons Movie", "27 July 2007", 2, photos);
 	}
 
 }

@@ -19,7 +19,8 @@ public class TheDarkKnight extends Movie{
 
 	@Override
 	public FilmDetails getFilmDetails() {
-		return new FilmDetails("The Dark Knight", "18 July 2008");
+		String[] photos = {"images/austinPowers1.jpg", "images/austinPowers2.jpg"};
+		return new FilmDetails("The Dark Knight", "18 July 2008", 2, photos);
 	}
 
 }

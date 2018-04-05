@@ -18,6 +18,7 @@ public class LordOfTheRings extends Movie {
 
 	@Override
 	public FilmDetails getFilmDetails() {
-		return new FilmDetails("The Lord of the Rings", "17 December 2003");
+		String[] photos = {"images/austinPowers1.jpg", "images/austinPowers2.jpg"};
+		return new FilmDetails("The Lord of the Rings", "17 December 2003", 2, photos);
 	}
 }

@@ -18,7 +18,8 @@ public class TeamAmerica extends Movie{
 
 	@Override
 	public FilmDetails getFilmDetails() {
-		return new FilmDetails("Team America:World Police", "15 October 2004");
+		String[] photos = {"images/austinPowers1.jpg", "images/austinPowers2.jpg"};
+		return new FilmDetails("Team America:World Police", "15 October 2004", 2, photos);
 	}
 
 }

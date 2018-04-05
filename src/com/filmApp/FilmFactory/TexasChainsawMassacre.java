@@ -18,7 +18,8 @@ public class TexasChainsawMassacre extends Movie{
 
 	@Override
 	public FilmDetails getFilmDetails() {
-		return new FilmDetails("The Texas Chainsaw Massacre", "4 October 1974");
+		String[] photos = {"images/austinPowers1.jpg", "images/austinPowers2.jpg"};
+		return new FilmDetails("The Texas Chainsaw Massacre", "4 October 1974", 2, photos);
 	}
 
 }

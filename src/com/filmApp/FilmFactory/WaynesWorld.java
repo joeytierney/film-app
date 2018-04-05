@@ -18,7 +18,8 @@ public class WaynesWorld extends Movie {
 
 	@Override
 	public FilmDetails getFilmDetails() {
-		return new FilmDetails("Wayne's World", "14 February 1992");
+		String[] photos = {"images/austinPowers1.jpg", "images/austinPowers2.jpg"};
+		return new FilmDetails("Wayne's World", "14 February 1992", 2, photos);
 	}
 
 }

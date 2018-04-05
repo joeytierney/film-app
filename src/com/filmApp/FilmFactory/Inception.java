@@ -18,7 +18,8 @@ public class Inception extends Movie{
 
 	@Override
 	public FilmDetails getFilmDetails() {
-		return new FilmDetails("Inception", "1 July 2010");
+		String[] photos = {"images/austinPowers1.jpg", "images/austinPowers2.jpg"};
+		return new FilmDetails("Inception", "1 July 2010", 2, photos);
 	}
 
 }

@@ -18,7 +18,8 @@ public class Halloween extends Movie {
 
 	@Override
 	public FilmDetails getFilmDetails() {
-		return new FilmDetails("Halloween", "27 October 1978");
+		String[] photos = {"images/austinPowers1.jpg", "images/austinPowers2.jpg"};
+		return new FilmDetails("Halloween", "27 October 1978", 2, photos);
 	}
 
 }

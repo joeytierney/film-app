@@ -18,7 +18,8 @@ public class NightmareOnElmStreet extends Movie {
 
 	@Override
 	public FilmDetails getFilmDetails() {
-		return new FilmDetails("A Nightmare On Elm Street", "16 November 1984");
+		String[] photos = {"images/austinPowers1.jpg", "images/austinPowers2.jpg"};
+		return new FilmDetails("A Nightmare On Elm Street", "16 November 1984", 2, photos);
 	}
 
 }

@@ -8,6 +8,7 @@ import java.util.Enumeration;
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JTree;
@@ -76,6 +77,7 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 	DefaultMutableTreeNode troot;
 	
 	Movie movie1 = new AustinPowers();
+	private JLabel lblImageFile;
 
 	/**
 	 * Launch the application.
@@ -140,8 +142,7 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 		filmTree = new JTree(troot);
 		filmTree.setBackground(Color.lightGray);
         loadTree(films);
-
-        sp.getViewport().add(filmTree);
+        sp.setViewportView(filmTree);
 	}
 	
 	public void loadTree(Film topFilm) {
@@ -150,7 +151,7 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
         pnlFilmList.remove(filmTree);
         filmTree = new JTree(troot);
         filmTree.addTreeSelectionListener(this);
-        sp.getViewport().add(filmTree);
+        sp.setViewportView(filmTree);
 
         addNodes(troot, topFilm);
         filmTree.expandRow(0);
@@ -367,6 +368,9 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 						.addComponent(btnPrev))
 					.addGap(48))
 		);
+		
+		lblImageFile = new JLabel();
+		pnlPhotos.add(lblImageFile);
 		pnlMainFilmContent.setLayout(gl_pnlMainFilmContent);
 	
 		
@@ -446,6 +450,9 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 		
 		txtReleaseDate.setText(movie.getFilmDetails().getReleaseDate());
 		
+		ImageIcon icon = new ImageIcon(movie.getFilmDetails().getPhoto(0)); 
+		lblImageFile.setIcon(icon);
+		
 		//txtRuntime.setText(movie.getFilmDetails().getTitle());
 		
 		//txtBudget.setText(movie.getFilmDetails().getTitle());
@@ -456,5 +463,4 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 		
 		//txtSynopsis.setText(movie.getFilmDetails().getTitle());
 	}
-
 }

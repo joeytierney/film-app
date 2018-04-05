@@ -18,7 +18,8 @@ public class Omen extends Movie{
 
 	@Override
 	public FilmDetails getFilmDetails() {
-		return new FilmDetails("The Omen", "25 June 1976");
+		String[] photos = {"images/austinPowers1.jpg", "images/austinPowers2.jpg"};
+		return new FilmDetails("The Omen", "25 June 1976", 2, photos);
 	}
 
 }
