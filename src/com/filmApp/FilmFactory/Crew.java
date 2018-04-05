@@ -63,5 +63,27 @@ public class Crew {
 		
 		return total;
 	}
+	
+	public String getDirector() {
+		String total = "";
+		for(int i = 0; i < this.getNumCrew(); i++) {
+			if(this.getRole(i).equalsIgnoreCase("director")) {
+				total += this.getName(i);
+			}
+		}
+		
+		return total;
+	}
+	
+	public String getWriter() {
+		String total = "";
+		for(int i = 0; i < this.getNumCrew(); i++) {
+			if(this.getRole(i).equalsIgnoreCase("writer")) {
+				total += this.getName(i);
+			}
+		}
+		
+		return total;
+	}
 
 }
