@@ -44,6 +44,8 @@ import java.awt.Color;
 
 public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 	
+	Movie movieChosen;
+	
 	// film categories
 	Film<?> films, comedy, action, horror;
 
@@ -417,9 +419,30 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
         Film f = films.getChild(selectedTerm);
         if (f != null) {
         	txtTitle.setText(f.getName());
+        	if(f.getName().equals("Austin Powers")) {
+        		movieChosen = new AustinPowers();
+        		changeMovieFields(movieChosen);
+        	}
+        	
         }
-            
+	}// end valueChanged()
+	
+	public void changeMovieFields(Movie movie) {
+		txtTitle.setText(movie.getFilmDetails().getTitle());
 		
+		txtDirector.setText(movie.getCrew().getDirector());
+		
+		txtReleaseDate.setText(movie.getFilmDetails().getReleaseDate());
+		
+		//txtRuntime.setText(movie.getFilmDetails().getTitle());
+		
+		//txtBudget.setText(movie.getFilmDetails().getTitle());
+		
+		//txtBoxOffice.setText(movie.getFilmDetails().getTitle());
+		
+		txtWriters.setText(movie.getCrew().getWriter());
+		
+		//txtSynopsis.setText(movie.getFilmDetails().getTitle());
 	}
 
 }
