@@ -3,6 +3,7 @@ package com.filmApp.GUI;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Enumeration;
 
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
@@ -11,8 +12,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JTree;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -26,18 +29,23 @@ import com.filmApp.CommandPattern.CommandHolder;
 import com.filmApp.CommandPattern.ExitButtonCommand;
 import com.filmApp.CommandPattern.ExitCommand;
 import com.filmApp.CommandPattern.MenuCommand;
-import com.filmApp.CompositePattern.FilmTreeModel;
+import com.filmApp.CompositePattern.BaseFilm;
+import com.filmApp.CompositePattern.Film;
+import com.filmApp.FilmFactory.AustinPowers;
+import com.filmApp.FilmFactory.Movie;
 
-import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.UIManager;
-import java.awt.Color;
-import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
+import javax.swing.UIManager;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
 
 
-public class FilmAppGUI implements ActionListener {
+public class FilmAppGUI implements ActionListener, TreeSelectionListener {
+	
+	// film categories
+	Film<?> films, comedy, action, horror;
 
 	private JFrame frmFilmApp;
 	private JTextField txtDirector;
@@ -54,6 +62,10 @@ public class FilmAppGUI implements ActionListener {
 	protected JTree filmTree;
 	private JPanel pnlFilmList;
 	private JTextField txtTitle;
+	JScrollPane sp;
+	DefaultMutableTreeNode troot;
+	
+	Movie movie1 = new AustinPowers();
 
 	/**
 	 * Launch the application.
@@ -79,8 +91,78 @@ public class FilmAppGUI implements ActionListener {
 	 * Create the application.
 	 */
 	public FilmAppGUI() {
+		makeFilms();
+		setTree();
 		initialize();
 	}
+	
+	private void makeFilms() {
+		films = new BaseFilm("FILMS");
+		films.add(comedy = new BaseFilm("Comedy"));
+		
+		comedy.add(new Film("The Simpsons Movie"));
+		comedy.add(new Film("Team america World Police"));
+		comedy.add(new Film("Waynes World"));
+		comedy.add(new Film("Austin Powers"));
+		
+		films.add(action = new BaseFilm("Action"));
+		
+		action.add(new Film("Fight Club"));
+		action.add(new Film("Inception"));
+		action.add(new Film("Lord of the Rings"));
+		action.add(new Film("The Dark Knight"));
+		
+		films.add(horror = new BaseFilm("Horror"));
+		
+		horror.add(new Film("The Omen"));
+		horror.add(new Film("Texas Chainsaw Massacre"));
+		horror.add(new Film("Nightmare on Elm Street"));
+		horror.add(new Film("Halloween"));	
+	}
+	
+	public void setTree() {
+		pnlFilmList = new JPanel();
+		pnlFilmList.setLayout(new BorderLayout());
+
+        sp = new JScrollPane();
+        pnlFilmList.add("Center", sp);
+        
+
+        pnlFilmList.setBorder(new BevelBorder(BevelBorder.RAISED));
+        troot = new DefaultMutableTreeNode(films.getName());
+		filmTree = new JTree(troot);
+		filmTree.setBackground(Color.lightGray);
+        loadTree(films);
+
+        sp.getViewport().add(filmTree);
+	}
+	
+	public void loadTree(Film topFilm) {
+        DefaultMutableTreeNode troot;
+        troot = new DefaultMutableTreeNode(topFilm.getName());
+        pnlFilmList.remove(filmTree);
+        filmTree = new JTree(troot);
+        filmTree.addTreeSelectionListener(this);
+        sp.getViewport().add(filmTree);
+
+        addNodes(troot, topFilm);
+        filmTree.expandRow(0);
+        //repaint();
+    }// end loadTree()
+
+    private void addNodes(DefaultMutableTreeNode pnode, Film proj) {
+        DefaultMutableTreeNode node;
+
+        Enumeration p = proj.subFilms();
+        if (p != null) {
+            while (p.hasMoreElements()) {
+                Film newProj = (Film)p.nextElement();
+                node = new DefaultMutableTreeNode(newProj.getName());
+                pnode.add(node);
+                addNodes(node, newProj);
+            }
+        }
+    }// end addNodes()
 
 	/**
 	 * Initialize the contents of the frame.
@@ -280,37 +362,6 @@ public class FilmAppGUI implements ActionListener {
 		);
 		pnlMainFilmContent.setLayout(gl_pnlMainFilmContent);
 	
-		filmTree = new JTree();
-		
-		/**
-		filmTree.setModel(new DefaultTreeModel(
-			new DefaultMutableTreeNode("Movies") {
-				{
-					DefaultMutableTreeNode node_1;
-					node_1 = new DefaultMutableTreeNode("Comedy");
-						node_1.add(new DefaultMutableTreeNode("Austin Powers"));
-						node_1.add(new DefaultMutableTreeNode("Team America:World Police\""));
-						node_1.add(new DefaultMutableTreeNode("Wayne's World"));
-						node_1.add(new DefaultMutableTreeNode("The Simpsons Movie"));
-					add(node_1);
-					node_1 = new DefaultMutableTreeNode("Action");
-						node_1.add(new DefaultMutableTreeNode("The Dark Knight"));
-						node_1.add(new DefaultMutableTreeNode("Inception"));
-						node_1.add(new DefaultMutableTreeNode("Fight Club"));
-						node_1.add(new DefaultMutableTreeNode("The Lord of the Rings"));
-					add(node_1);
-					node_1 = new DefaultMutableTreeNode("Horror");
-						node_1.add(new DefaultMutableTreeNode("The Texas Chainsaw Massacre"));
-						node_1.add(new DefaultMutableTreeNode("The Omen"));
-						node_1.add(new DefaultMutableTreeNode("A Nightmare On Elm Street"));
-						node_1.add(new DefaultMutableTreeNode("Halloween"));
-					add(node_1);
-				}
-			}
-		));
-		*/
-		
-		filmTree.setModel(new DefaultTreeModel(new FilmTreeModel()));
 		
 		
 		GroupLayout gl_pnlFilmList = new GroupLayout(pnlFilmList);
@@ -355,6 +406,19 @@ public class FilmAppGUI implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		CommandHolder obj = (CommandHolder)e.getSource();
 		obj.getCommand().Execute();
+		
+	}
+
+	@Override
+	public void valueChanged(TreeSelectionEvent evt) {
+		TreePath path = evt.getPath();
+        String selectedTerm = path.getLastPathComponent().toString();
+
+        Film f = films.getChild(selectedTerm);
+        if (f != null) {
+        	txtTitle.setText(f.getName());
+        }
+            
 		
 	}
 

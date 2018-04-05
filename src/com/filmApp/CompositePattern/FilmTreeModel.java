@@ -9,8 +9,6 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.*;
 
-import com.filmApp.GUI.FilmAppGUI;
-
 public class FilmTreeModel extends DefaultMutableTreeNode implements TreeSelectionListener {
 	
 	/**
@@ -22,13 +20,13 @@ public class FilmTreeModel extends DefaultMutableTreeNode implements TreeSelecti
 	Film<?> films, comedy, action, horror;
 	
 	// films comedy
-	Film simpsons, teamAmerica, waynesWorld, austinPowers;
+	//Film simpsons, teamAmerica, waynesWorld, austinPowers;
 	
 	// films action
-	Film fightClub, Inception, lotr, darkKnight;
+	//Film fightClub, Inception, lotr, darkKnight;
 	
 	// films horror
-	Film omen, texas, nightmare, halloween;
+	//Film omen, texas, nightmare, halloween;
 	
 	public JTree filmTree;
 	public JScrollPane sp;
@@ -57,30 +55,8 @@ public class FilmTreeModel extends DefaultMutableTreeNode implements TreeSelecti
 	
 	private void addNodes(DefaultMutableTreeNode pnode, Film<?> film) {
 		
-		DefaultMutableTreeNode node_1;
+		DefaultMutableTreeNode node;
 		
-		node_1 = new DefaultMutableTreeNode("Comedy");
-			node_1.add(new DefaultMutableTreeNode("Austin Powers"));
-			node_1.add(new DefaultMutableTreeNode("Team America:World Police\""));
-			node_1.add(new DefaultMutableTreeNode("Wayne's World"));
-			node_1.add(new DefaultMutableTreeNode("SimpsonsTesting"));
-		add(node_1);
-		
-		node_1 = new DefaultMutableTreeNode("Action");
-			node_1.add(new DefaultMutableTreeNode("The Dark Knight"));
-			node_1.add(new DefaultMutableTreeNode("Inception"));
-			node_1.add(new DefaultMutableTreeNode("Fight Club"));
-			node_1.add(new DefaultMutableTreeNode("The Lord of the Rings"));
-		add(node_1);
-		
-		node_1 = new DefaultMutableTreeNode("Horror");
-			node_1.add(new DefaultMutableTreeNode("The Texas Chainsaw Massacre"));
-			node_1.add(new DefaultMutableTreeNode("The Omen"));
-			node_1.add(new DefaultMutableTreeNode("A Nightmare On Elm Street"));
-			node_1.add(new DefaultMutableTreeNode("Halloween"));
-		add(node_1);
-		
-		/**
         Enumeration<?> f = film.subFilms();
         if (f != null) {
             while (f.hasMoreElements()) {
@@ -90,29 +66,30 @@ public class FilmTreeModel extends DefaultMutableTreeNode implements TreeSelecti
                 addNodes(node, newFilm);
             }
         }
-        */
     }// end addNodes()
 	
 	private void makeFilms() {
 		films = new BaseFilm("FILMS");
 		films.add(comedy = new BaseFilm("Comedy"));
+		
+		comedy.add(new Film("Simpsons"));
+		comedy.add(new Film("Team america World Police"));
+		comedy.add(new Film("Waynes World"));
+		comedy.add(new Film("Austin Powers"));
+		
 		films.add(action = new BaseFilm("Action"));
+		
+		action.add(new Film("Fight Club"));
+		action.add(new Film("Inceptioon"));
+		action.add(new Film("Lord of the Rings"));
+		action.add(new Film("The Dark Knight"));
+		
 		films.add(horror = new BaseFilm("Horror"));
 		
-		comedy.add(simpsons = new Film("The Simpsons Movie"));
-		comedy.add(teamAmerica = new Film("Team america World Police"));
-		comedy.add(waynesWorld = new Film("Waynes World"));
-		comedy.add(austinPowers = new Film("Austin Powers"));
-		
-		action.add(fightClub = new Film("Fight Club"));
-		action.add(Inception = new Film("Inceptioon"));
-		action.add(lotr = new Film("Lord of the Rings"));
-		action.add(darkKnight = new Film("The Dark Knight"));
-		
-		horror.add(omen = new Film("The Omen"));
-		horror.add(texas = new Film("Texas Chainsaw Massacre"));
-		horror.add(nightmare = new Film("Nightmare on Elm Street"));
-		horror.add(halloween = new Film("Halloween"));
+		horror.add(new Film("The Omen"));
+		horror.add(new Film("Texas Chainsaw Massacre"));
+		horror.add(new Film("Nightmare on Elm Street"));
+		horror.add(new Film("Halloween"));	
 	}
 
 	@Override
