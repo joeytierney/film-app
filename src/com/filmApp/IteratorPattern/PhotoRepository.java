@@ -21,7 +21,13 @@ public class PhotoRepository implements Container {
 			// TODO Auto-generated method stub
 			return null;
 		}
+
+		@Override
+		public Object prev() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 		
 	}
-
+	
 }
