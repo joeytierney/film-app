@@ -31,8 +31,12 @@ import com.filmApp.CommandPattern.ExitCommand;
 import com.filmApp.CommandPattern.MenuCommand;
 import com.filmApp.CompositePattern.BaseFilm;
 import com.filmApp.CompositePattern.Film;
+import com.filmApp.FilmFactory.ActionMovieStore;
 import com.filmApp.FilmFactory.AustinPowers;
+import com.filmApp.FilmFactory.ComedyMovieStore;
+import com.filmApp.FilmFactory.HorrorMovieStore;
 import com.filmApp.FilmFactory.Movie;
+import com.filmApp.FilmFactory.MovieStore;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
@@ -45,6 +49,10 @@ import java.awt.Color;
 public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 	
 	Movie movieChosen;
+	
+	MovieStore comedyStore = new ComedyMovieStore();
+	MovieStore horrorStore = new HorrorMovieStore();
+	MovieStore actionStore = new ActionMovieStore();
 	
 	// film categories
 	Film<?> films, comedy, action, horror;
@@ -73,9 +81,6 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		//InitFilms films = new InitFilms();
-		//films.initFilms();
-		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -103,22 +108,22 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 		films.add(comedy = new BaseFilm("Comedy"));
 		
 		comedy.add(new Film("The Simpsons Movie"));
-		comedy.add(new Film("Team america World Police"));
-		comedy.add(new Film("Waynes World"));
+		comedy.add(new Film("Team America:World Police"));
+		comedy.add(new Film("Wayne's World"));
 		comedy.add(new Film("Austin Powers"));
 		
 		films.add(action = new BaseFilm("Action"));
 		
 		action.add(new Film("Fight Club"));
 		action.add(new Film("Inception"));
-		action.add(new Film("Lord of the Rings"));
+		action.add(new Film("The Lord of the Rings"));
 		action.add(new Film("The Dark Knight"));
 		
 		films.add(horror = new BaseFilm("Horror"));
 		
 		horror.add(new Film("The Omen"));
-		horror.add(new Film("Texas Chainsaw Massacre"));
-		horror.add(new Film("Nightmare on Elm Street"));
+		horror.add(new Film("The Texas Chainsaw Massacre"));
+		horror.add(new Film("A Nightmare On Elm Street"));
 		horror.add(new Film("Halloween"));	
 	}
 	
@@ -415,15 +420,22 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 	public void valueChanged(TreeSelectionEvent evt) {
 		TreePath path = evt.getPath();
         String selectedTerm = path.getLastPathComponent().toString();
+        String parentTerm = path.getParentPath().toString().toLowerCase();
+        
+        Movie movie;
 
         Film f = films.getChild(selectedTerm);
         if (f != null) {
-        	txtTitle.setText(f.getName());
-        	if(f.getName().equals("Austin Powers")) {
-        		movieChosen = new AustinPowers();
-        		changeMovieFields(movieChosen);
+        	if(parentTerm.contains("comedy")) {
+        		movie = comedyStore.orderMovie(selectedTerm);
+        		changeMovieFields(movie);
+        	} else if(parentTerm.contains("action")) {
+        		movie = actionStore.orderMovie(selectedTerm);
+        		changeMovieFields(movie);
+        	} else if(parentTerm.contains("horror")) {
+        		movie = horrorStore.orderMovie(selectedTerm);
+        		changeMovieFields(movie);
         	}
-        	
         }
 	}// end valueChanged()
 	
