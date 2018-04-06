@@ -50,6 +50,7 @@ import javax.swing.UIManager;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JTextPane;
+import java.awt.Dimension;
 
 
 public class FilmAppGUI implements ActionListener, TreeSelectionListener {
@@ -84,9 +85,8 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 	Movie movie1 = new AustinPowers();
 	private JPanel pnlMainFilmContent;
 	private JTextPane textPaneSynopsis;
-	private JLabel lblImageFile;
-	private JPanel pnlPhotos;
 	private JLabel lblPosterImage;
+	private JLabel lblPhotoImage;
 	
 
 	/**
@@ -398,14 +398,17 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 								.addComponent(btnPrev)))))
 		);
 		
+		lblPhotoImage = new JLabel("");
+		lblPhotoImage.setMinimumSize(new Dimension(300, 200));
+		lblPhotoImage.setMaximumSize(new Dimension(300, 200));
+		lblPhotoImage.setPreferredSize(new Dimension(300, 200));
+		scrollPanePhotos.setViewportView(lblPhotoImage);
+		
 		lblPosterImage = new JLabel("");
+		lblPosterImage.setMinimumSize(new Dimension(300, 200));
+		lblPosterImage.setMaximumSize(new Dimension(300, 200));
+		lblPosterImage.setPreferredSize(new Dimension(300, 200));
 		scrollPanePoster.setViewportView(lblPosterImage);
-		
-		pnlPhotos = new JPanel();
-		scrollPanePhotos.setViewportView(pnlPhotos);
-		
-		lblImageFile = new JLabel("");
-		pnlPhotos.add(lblImageFile);
 		
 		textPaneSynopsis = new JTextPane();
 		scrollPane.setViewportView(textPaneSynopsis);
@@ -485,8 +488,8 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 		txtTitle.setText("");
 		txtDirector.setText("");
 		txtReleaseDate.setText("");
-		ImageIcon icon = new ImageIcon(""); 
-		lblImageFile.setIcon(icon);
+		lblPosterImage.setIcon(null);
+		lblPhotoImage.setIcon(null);
 		txtRuntime.setText("");
 		txtBudget.setText("");
 		txtBoxOffice.setText("");
@@ -494,6 +497,9 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 	}
 	
 	public void changeMovieFields(Movie movie) {
+		
+		emptyMovieFields();
+		
 		if(movie != null) {
 			txtTitle.setText(movie.getFilmDetails().getTitle());
 			txtDirector.setText(movie.getCrew().getDirector());
@@ -508,11 +514,11 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 				e.printStackTrace();
 			}
 			
-			Image resizedImg = img.getScaledInstance(pnlPhotos.getWidth(), pnlPhotos.getHeight(), Image.SCALE_DEFAULT);
+			Image resizedImg = img.getScaledInstance(lblPhotoImage.getWidth(), lblPhotoImage.getHeight(), Image.SCALE_DEFAULT);
 			ImageIcon icon = new ImageIcon(resizedImg); 
-			lblImageFile.setIcon(icon);
+			lblPhotoImage.setIcon(icon);
 			
-			Image resizedImgPoster = poster.getScaledInstance(pnlPhotos.getWidth(), pnlPhotos.getHeight(), Image.SCALE_DEFAULT);
+			Image resizedImgPoster = poster.getScaledInstance(lblPosterImage.getWidth(), lblPosterImage.getHeight(), Image.SCALE_SMOOTH);
 			ImageIcon iconPoster = new ImageIcon(resizedImgPoster); 
 			lblPosterImage.setIcon(iconPoster);
 			
@@ -527,8 +533,7 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 			txtTitle.setText(errormsg);
 			txtDirector.setText(errormsg);
 			txtReleaseDate.setText(errormsg);
-			ImageIcon icon = new ImageIcon(""); 
-			lblImageFile.setIcon(icon);
+			lblPhotoImage.setIcon(null);
 			txtRuntime.setText(errormsg);
 			txtBudget.setText(errormsg);
 			txtBoxOffice.setText(errormsg);
