@@ -58,7 +58,7 @@ public class Cast {
 		String total = "";
 		
 		for(int i = 0; i < this.getNumCast(); i++) {
-			total += this.getName(i) + " : " + this.getCharacterName(i) + "\n";
+			total += this.getName(i) + " -- " + this.getCharacterName(i) + "\n";
 		}
 		
 		return total;

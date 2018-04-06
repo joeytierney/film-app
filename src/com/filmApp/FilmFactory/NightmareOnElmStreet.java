@@ -18,8 +18,9 @@ public class NightmareOnElmStreet extends Movie {
 
 	@Override
 	public FilmDetails getFilmDetails() {
-		String[] photos = {"images/austinPowers1.jpg", "images/austinPowers2.jpg"};
-		return new FilmDetails("A Nightmare On Elm Street", "16 November 1984", 2, photos);
+		String[] photos = {"images/nightmare/nightmare1.jpg", "images/nightmare/nightmare2.jpg"};
+		// title, release date, number of photos, photos, runtime, budget, box office, synospsis
+		return new FilmDetails("images/nightmare/nightmarePoster.jpg", "A Nightmare On Elm Street", "16 November 1984", 2, photos, "1h 31min", "$1,800,000 (estimated)", "$25,504,513", "On Elm Street, Nancy Thompson and a group of her friends (comprising Tina Gray, Rod Lane and Glen Lantz) are being tormented by a clawed killer in their dreams named Fred Krueger. Nancy must think quickly, as Fred tries to pick them off one by one. When he has you in your sleep, who is there to save you?");
 	}
 
 }
