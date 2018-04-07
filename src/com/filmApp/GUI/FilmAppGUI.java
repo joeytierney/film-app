@@ -311,6 +311,18 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 			
 		});
 		
+		btnPrev.addActionListener(new ActionListener() {
+			PhotoRepository photoRepo = new PhotoRepository();
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				for(Iterator iter = photoRepo.getIterator(); iter.hasNext();){
+					lblPhotos.setIcon((Icon) iter.prev());
+				}
+				
+			}
+			
+		});
+		
 		JScrollPane scrollPanePoster = new JScrollPane();
 		GroupLayout gl_pnlMainFilmContent = new GroupLayout(pnlMainFilmContent);
 		gl_pnlMainFilmContent.setHorizontalGroup(

@@ -36,8 +36,12 @@ public class PhotoRepository implements Container {
 
 		@Override
 		public Object prev() {
-			// TODO Auto-generated method stub
-			return null;
+			if(this.hasNext()){
+				return photoList[photo_position--];
+			}
+			else{
+				return null;
+			}
 		}
 		
 	}
