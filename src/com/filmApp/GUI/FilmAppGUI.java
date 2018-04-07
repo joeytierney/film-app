@@ -299,11 +299,17 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 		
 		JScrollPane scrollPanePhotos = new JScrollPane();
 		
-		PhotoRepository photoRepo = new PhotoRepository();
-		
-		for(Iterator iter = photoRepo.getIterator(); iter.hasNext();){
-			lblPhotos.setIcon((Icon) iter.next());
-		}
+		btnNext.addActionListener(new ActionListener() {
+			PhotoRepository photoRepo = new PhotoRepository();
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				for(Iterator iter = photoRepo.getIterator(); iter.hasNext();){
+					lblPhotos.setIcon((Icon) iter.next());
+				}
+				
+			}
+			
+		});
 		
 		JScrollPane scrollPanePoster = new JScrollPane();
 		GroupLayout gl_pnlMainFilmContent = new GroupLayout(pnlMainFilmContent);
