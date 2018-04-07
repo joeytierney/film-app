@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -42,6 +43,8 @@ import com.filmApp.FilmFactory.ComedyMovieStore;
 import com.filmApp.FilmFactory.HorrorMovieStore;
 import com.filmApp.FilmFactory.Movie;
 import com.filmApp.FilmFactory.MovieStore;
+import com.filmApp.IteratorPattern.Iterator;
+import com.filmApp.IteratorPattern.PhotoRepository;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
@@ -295,6 +298,12 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 		JScrollPane scrollPane = new JScrollPane();
 		
 		JScrollPane scrollPanePhotos = new JScrollPane();
+		
+		PhotoRepository photoRepo = new PhotoRepository();
+		
+		for(Iterator iter = photoRepo.getIterator(); iter.hasNext();){
+			lblPhotos.setIcon((Icon) iter.next());
+		}
 		
 		JScrollPane scrollPanePoster = new JScrollPane();
 		GroupLayout gl_pnlMainFilmContent = new GroupLayout(pnlMainFilmContent);
