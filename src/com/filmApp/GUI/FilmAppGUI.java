@@ -300,6 +300,20 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 		
 		JButton button = new JButton(">>");
 		
+		button.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				PhotoRepository photoRepo = new PhotoRepository();
+				for(Iterator iter = photoRepo.getIterator(); iter.hasNext();){
+					lblPhotos.setIcon((Icon) iter.next());
+				}
+			}
+			
+			
+		});
+		
 		JButton button_1 = new JButton("<<");
 		GroupLayout gl_pnlMainFilmContent = new GroupLayout(pnlMainFilmContent);
 		gl_pnlMainFilmContent.setHorizontalGroup(
