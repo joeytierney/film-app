@@ -45,6 +45,7 @@ import com.filmApp.FilmFactory.Movie;
 import com.filmApp.FilmFactory.MovieStore;
 import com.filmApp.IteratorPattern.Iterator;
 import com.filmApp.IteratorPattern.PhotoRepository;
+import com.filmApp.SingletonPattern.WelcomeMessage;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
@@ -96,6 +97,10 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		WelcomeMessage message = WelcomeMessage.getMessage();
+		
+		message.showMessage();
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -307,7 +312,7 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 				// TODO Auto-generated method stub
 				PhotoRepository photoRepo = new PhotoRepository();
 				for(Iterator iter = photoRepo.getIterator(); iter.hasNext();){
-					lblPhotos.setIcon((Icon) iter.next());
+					lblPhotoImage.setIcon((Icon) iter.next());
 				}
 			}
 			
