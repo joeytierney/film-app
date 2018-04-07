@@ -6,10 +6,6 @@ public class WelcomeMessage {
 	
 	private static WelcomeMessage msg = new WelcomeMessage();
 	
-	private WelcomeMessage(){
-		
-	}
-	
 	public static WelcomeMessage getMessage() {
 		return msg;
 	}
