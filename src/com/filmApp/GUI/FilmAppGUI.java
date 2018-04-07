@@ -211,14 +211,14 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 		
 		GroupLayout groupLayout = new GroupLayout(frmFilmApp.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(pnlFilmList, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(pnlMainFilmContent, GroupLayout.PREFERRED_SIZE, 720, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(893, Short.MAX_VALUE)
 					.addComponent(btnQuit, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
@@ -226,14 +226,15 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(25)
-							.addComponent(pnlFilmList, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addComponent(pnlFilmList, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(54))
+						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(pnlMainFilmContent, GroupLayout.PREFERRED_SIZE, 607, GroupLayout.PREFERRED_SIZE)))
-					.addGap(33)
+							.addComponent(pnlMainFilmContent, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)))
 					.addComponent(btnQuit, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
@@ -286,10 +287,6 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 		txtWriters.setEditable(false);
 		txtWriters.setColumns(10);
 		
-		JButton btnNext = new JButton(">>");
-		
-		JButton btnPrev = new JButton("<<");
-		
 		JLabel label = new JLabel("Cast");
 		
 		txtPnlCast = new JTextPane();
@@ -299,74 +296,53 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 		
 		JScrollPane scrollPanePhotos = new JScrollPane();
 		
-		btnNext.addActionListener(new ActionListener() {
-			PhotoRepository photoRepo = new PhotoRepository();
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				for(Iterator iter = photoRepo.getIterator(); iter.hasNext();){
-					lblPhotos.setIcon((Icon) iter.next());
-				}
-				
-			}
-			
-		});
-		
-		btnPrev.addActionListener(new ActionListener() {
-			PhotoRepository photoRepo = new PhotoRepository();
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				for(Iterator iter = photoRepo.getIterator(); iter.hasNext();){
-					lblPhotos.setIcon((Icon) iter.prev());
-				}
-				
-			}
-			
-		});
-		
 		JScrollPane scrollPanePoster = new JScrollPane();
+		
+		JButton button = new JButton(">>");
+		
+		JButton button_1 = new JButton("<<");
 		GroupLayout gl_pnlMainFilmContent = new GroupLayout(pnlMainFilmContent);
 		gl_pnlMainFilmContent.setHorizontalGroup(
 			gl_pnlMainFilmContent.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlMainFilmContent.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_pnlMainFilmContent.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(lblPoster)
+						.addComponent(lblPhotos)
+						.addComponent(scrollPanePhotos, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+						.addComponent(scrollPanePoster, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_pnlMainFilmContent.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_pnlMainFilmContent.createSequentialGroup()
-							.addGap(100)
-							.addComponent(btnPrev)
-							.addGap(18)
-							.addComponent(btnNext))
-						.addGroup(gl_pnlMainFilmContent.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(gl_pnlMainFilmContent.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(lblPoster)
-								.addComponent(lblPhotos)
-								.addComponent(scrollPanePhotos, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-								.addComponent(scrollPanePoster))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_pnlMainFilmContent.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblSynopsis)
-								.addComponent(lblReleaseDate)
-								.addComponent(lblTitle)
-								.addComponent(lblDirector)
-								.addComponent(lblRuntime)
-								.addComponent(lblBudget)
-								.addComponent(lblBoxOffice)
-								.addComponent(lblWriters)
-								.addComponent(label, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))))
+						.addComponent(lblSynopsis)
+						.addComponent(lblReleaseDate)
+						.addComponent(lblTitle)
+						.addComponent(lblDirector)
+						.addComponent(lblRuntime)
+						.addComponent(lblBudget)
+						.addComponent(lblBoxOffice)
+						.addComponent(lblWriters)
+						.addComponent(label, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_pnlMainFilmContent.createParallelGroup(Alignment.TRAILING)
-						.addComponent(txtDirector, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
-						.addComponent(txtTitle, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
-						.addComponent(txtReleaseDate, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
-						.addComponent(txtRuntime, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
-						.addComponent(txtBudget, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
-						.addComponent(txtBoxOffice, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
-						.addComponent(txtWriters, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+						.addComponent(txtDirector, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+						.addComponent(txtTitle, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+						.addComponent(txtReleaseDate, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+						.addComponent(txtRuntime, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+						.addComponent(txtBudget, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+						.addComponent(txtBoxOffice, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+						.addComponent(txtWriters, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
 						.addGroup(gl_pnlMainFilmContent.createSequentialGroup()
 							.addGroup(gl_pnlMainFilmContent.createParallelGroup(Alignment.TRAILING)
-								.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
-								.addComponent(txtPnlCast, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE))
+								.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+								.addComponent(txtPnlCast, GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE))
 							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addGap(21))
+				.addGroup(gl_pnlMainFilmContent.createSequentialGroup()
+					.addGap(91)
+					.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(button, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(515, Short.MAX_VALUE))
 		);
 		gl_pnlMainFilmContent.setVerticalGroup(
 			gl_pnlMainFilmContent.createParallelGroup(Alignment.LEADING)
@@ -418,11 +394,12 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(gl_pnlMainFilmContent.createParallelGroup(Alignment.LEADING)
 										.addComponent(lblSynopsis)
-										.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE))))
-							.addGap(277)
-							.addGroup(gl_pnlMainFilmContent.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnNext)
-								.addComponent(btnPrev)))))
+										.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE))))))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_pnlMainFilmContent.createParallelGroup(Alignment.BASELINE)
+						.addComponent(button_1)
+						.addComponent(button))
+					.addGap(271))
 		);
 		
 		lblPhotoImage = new JLabel("");
