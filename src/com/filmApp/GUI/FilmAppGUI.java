@@ -90,6 +90,10 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 	private JLabel lblPosterImage;
 	private JLabel lblPhotoImage;
 	
+	private String imageList[] = new String[]{"images/darkKnight/dk1.jpg", "images/darkKnight/dk2.jpg"};
+	ImageIcon images;
+	
+	
 
 	/**
 	 * Launch the application.
@@ -119,6 +123,8 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 		makeFilms();
 		setTree();
 		initialize();
+		images = new ImageIcon(imageList[0]);
+		lblPhotoImage.setIcon(images);
 	}
 	
 	private void makeFilms() {
@@ -302,6 +308,18 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 		JScrollPane scrollPanePoster = new JScrollPane();
 		
 		JButton button = new JButton(">>");
+		button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				for(int imgCount = 1; imgCount < imageList.length; imgCount++) {
+					images = new ImageIcon(imageList[imgCount]);
+					lblPhotoImage.setIcon(images);
+				}
+			}
+			
+		});
 		
 		JButton button_1 = new JButton("<<");
 		GroupLayout gl_pnlMainFilmContent = new GroupLayout(pnlMainFilmContent);
