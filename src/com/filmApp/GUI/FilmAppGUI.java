@@ -490,6 +490,8 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 		txtBudget.setText("");
 		txtBoxOffice.setText("");
 		txtWriters.setText("");
+		txtPnlCast.setText("");
+		textPaneSynopsis.setText("");
 	}
 	
 	public void changeMovieFields(Movie movie) {
@@ -534,6 +536,8 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 			txtBudget.setText(errormsg);
 			txtBoxOffice.setText(errormsg);
 			txtWriters.setText(errormsg);
+			txtPnlCast.setText(errormsg);
+			textPaneSynopsis.setText(errormsg);
 		}
 		
 	}
