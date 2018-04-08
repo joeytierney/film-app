@@ -6,6 +6,11 @@ public class WelcomeMessage {
 	
 	private static WelcomeMessage msg = new WelcomeMessage();
 	
+	private WelcomeMessage(){
+		// This remains private so that this class cannot be
+		// instantiated
+	}
+	
 	public static WelcomeMessage getMessage() {
 		return msg;
 	}

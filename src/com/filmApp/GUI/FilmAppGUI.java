@@ -43,8 +43,6 @@ import com.filmApp.FilmFactory.ComedyMovieStore;
 import com.filmApp.FilmFactory.HorrorMovieStore;
 import com.filmApp.FilmFactory.Movie;
 import com.filmApp.FilmFactory.MovieStore;
-import com.filmApp.IteratorPattern.Iterator;
-import com.filmApp.IteratorPattern.PhotoRepository;
 import com.filmApp.SingletonPattern.WelcomeMessage;
 
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -304,20 +302,6 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 		JScrollPane scrollPanePoster = new JScrollPane();
 		
 		JButton button = new JButton(">>");
-		
-		button.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				PhotoRepository photoRepo = new PhotoRepository();
-				for(Iterator iter = photoRepo.getIterator(); iter.hasNext();){
-					lblPhotoImage.setIcon((Icon) iter.next());
-				}
-			}
-			
-			
-		});
 		
 		JButton button_1 = new JButton("<<");
 		GroupLayout gl_pnlMainFilmContent = new GroupLayout(pnlMainFilmContent);
