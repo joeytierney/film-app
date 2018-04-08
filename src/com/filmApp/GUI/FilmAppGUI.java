@@ -38,7 +38,6 @@ import com.filmApp.CommandPattern.MenuCommand;
 import com.filmApp.CompositePattern.BaseFilm;
 import com.filmApp.CompositePattern.Film;
 import com.filmApp.FilmFactory.ActionMovieStore;
-import com.filmApp.FilmFactory.AustinPowers;
 import com.filmApp.FilmFactory.ComedyMovieStore;
 import com.filmApp.FilmFactory.HorrorMovieStore;
 import com.filmApp.FilmFactory.Movie;
@@ -84,13 +83,12 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 	JScrollPane listSp;
 	DefaultMutableTreeNode troot;
 	
-	Movie movie1 = new AustinPowers();
 	private JPanel pnlMainFilmContent;
 	private JTextPane textPaneSynopsis;
 	private JLabel lblPosterImage;
 	private JLabel lblPhotoImage;
 	
-	private String imageList[] = new String[]{"images/darkKnight/dk1.jpg", "images/darkKnight/dk2.jpg"};
+	private String imageList[] = new String[]{"","images/darkKnight/dk1.jpg", "images/darkKnight/dk2.jpg"};
 	ImageIcon images;
 	
 	
@@ -313,7 +311,7 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				for(int imgCount = 1; imgCount < imageList.length; imgCount++) {
+				for(int imgCount = 0; imgCount < imageList.length; imgCount++) {
 					images = new ImageIcon(imageList[imgCount]);
 					lblPhotoImage.setIcon(images);
 				}
@@ -322,6 +320,7 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 		});
 		
 		JButton button_1 = new JButton("<<");
+		
 		GroupLayout gl_pnlMainFilmContent = new GroupLayout(pnlMainFilmContent);
 		gl_pnlMainFilmContent.setHorizontalGroup(
 			gl_pnlMainFilmContent.createParallelGroup(Alignment.LEADING)
