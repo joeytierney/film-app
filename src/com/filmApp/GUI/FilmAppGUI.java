@@ -39,6 +39,7 @@ import com.filmApp.CompositePattern.BaseFilm;
 import com.filmApp.CompositePattern.Film;
 import com.filmApp.FilmFactory.ActionMovieStore;
 import com.filmApp.FilmFactory.ComedyMovieStore;
+import com.filmApp.FilmFactory.FilmDetails;
 import com.filmApp.FilmFactory.HorrorMovieStore;
 import com.filmApp.FilmFactory.Movie;
 import com.filmApp.FilmFactory.MovieStore;
@@ -87,12 +88,7 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 	private JTextPane textPaneSynopsis;
 	private JLabel lblPosterImage;
 	private JLabel lblPhotoImage;
-	
-	private String imageList[] = new String[]{"","images/darkKnight/dk1.jpg", "images/darkKnight/dk2.jpg"};
-	ImageIcon images;
-	
-	
-
+		
 	/**
 	 * Launch the application.
 	 */
@@ -121,8 +117,6 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 		makeFilms();
 		setTree();
 		initialize();
-		images = new ImageIcon(imageList[0]);
-		lblPhotoImage.setIcon(images);
 	}
 	
 	private void makeFilms() {
@@ -305,22 +299,6 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 		
 		JScrollPane scrollPanePoster = new JScrollPane();
 		
-		JButton button = new JButton(">>");
-		button.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				for(int imgCount = 0; imgCount < imageList.length; imgCount++) {
-					images = new ImageIcon(imageList[imgCount]);
-					lblPhotoImage.setIcon(images);
-				}
-			}
-			
-		});
-		
-		JButton button_1 = new JButton("<<");
-		
 		GroupLayout gl_pnlMainFilmContent = new GroupLayout(pnlMainFilmContent);
 		gl_pnlMainFilmContent.setHorizontalGroup(
 			gl_pnlMainFilmContent.createParallelGroup(Alignment.LEADING)
@@ -358,12 +336,8 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addGap(21))
 				.addGroup(gl_pnlMainFilmContent.createSequentialGroup()
-					.addGap(91)
-					.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(button, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(515, Short.MAX_VALUE))
-		);
+					
+		));
 		gl_pnlMainFilmContent.setVerticalGroup(
 			gl_pnlMainFilmContent.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlMainFilmContent.createSequentialGroup()
@@ -417,10 +391,8 @@ public class FilmAppGUI implements ActionListener, TreeSelectionListener {
 										.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE))))))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_pnlMainFilmContent.createParallelGroup(Alignment.BASELINE)
-						.addComponent(button_1)
-						.addComponent(button))
 					.addGap(271))
-		);
+		));
 		
 		lblPhotoImage = new JLabel("");
 		lblPhotoImage.setMinimumSize(new Dimension(300, 200));
